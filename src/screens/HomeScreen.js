@@ -4,6 +4,7 @@ import {
   View,
   Dimensions,
   ImageBackground,
+  ScrollView,
 } from 'react-native';
 
 import React from 'react';
@@ -18,17 +19,34 @@ const height = Dimensions.get('window').height;
 export default function HomeScreen() {
   return (
     <View style={styles.parent}>
-      <View style={{alignItems: 'center', justifyContent: 'flex-end'}}>
+      <View
+        style={{
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          height: height * 0.85,
+        }}>
         <ImageBackground
           source={require('../assets/bluebg.png')}
           style={styles.backgroundImage}
         />
-        <PostCard />
+        <ScrollView>
+          <PostCard
+            name={'Muhammad Maarij'}
+            time={'1h ago'}
+            caption={'This is Greek salad'}
+            uri={''}
+          />
+          <PostCard
+            name={'Muhammad Maarij'}
+            time={'1h ago'}
+            caption={'This is Greek salad'}
+            uri={''}
+          />
+        </ScrollView>
       </View>
       {/* <CustomButton title={'Done'} />
       <InputTitle text={'Email'} />
       <CustomTextInput /> */}
-      
     </View>
   );
 }

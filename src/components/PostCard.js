@@ -20,6 +20,7 @@ export default function PostCard({name, time, caption, uri}) {
         height: imageHeight + 120,
         backgroundColor: 'white',
         borderRadius: 20,
+        marginVertical: 20,
       }}>
       <View style={{flexDirection: 'row', margin: 22}}>
         <Image
