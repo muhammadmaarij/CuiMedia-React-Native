@@ -3,7 +3,7 @@ import {StyleSheet, View, Dimensions, Image, Text} from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 
-export default function PostCard() {
+export default function PostCard({name, time, caption, uri}) {
   const [imageHeight, setImageHeight] = useState(0);
 
   const handleImageLoad = event => {
@@ -16,22 +16,30 @@ export default function PostCard() {
   return (
     <View
       style={{
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
         height: imageHeight + 120,
         backgroundColor: 'white',
         borderRadius: 20,
       }}>
-      <View>
+      <View style={{flexDirection: 'row', margin: 22}}>
         <Image
           style={{
-            height: 35,
-            width: 35,
+            height: 38,
+            width: 38,
             borderRadius: 17.5,
             backgroundColor: 'green',
+            marginRight: 12,
+          }}
+          source={{
+            uri: uri,
           }}
         />
+        <View>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.time}>{time}</Text>
+        </View>
       </View>
-      <Text>hekkk</Text>
+      <Text style={styles.caption}>{caption}</Text>
       <View style={[styles.container, {height: imageHeight}]}>
         <Image
           source={{
@@ -58,5 +66,15 @@ const styles = StyleSheet.create({
   image: {
     resizeMode: 'cover',
     alignSelf: 'center',
+  },
+  name: {
+    fontSize: 18,
+    fontWeight: '500',
+    color: 'black',
+  },
+  caption: {
+    marginHorizontal: 15,
+    marginBottom: 5,
+    maxWidth: screenWidth * 0.7,
   },
 });
