@@ -5,6 +5,7 @@ import {
   Dimensions,
   ImageBackground,
   ScrollView,
+  Pressable,
 } from 'react-native';
 
 import React, {useState} from 'react';
@@ -76,7 +77,18 @@ export default function SignUpScreen() {
           secureText={false}
         />
       </View>
-      <CustomButton title={'SignUp'} />
+      <CustomButton title={'SignUp'} onPress={() => {}} />
+      <View
+        style={{flexDirection: 'row', justifyContent: 'center', marginTop: 5}}>
+        <Text style={{fontSize: 16, color: 'white'}}>
+          Already have an account?{' '}
+        </Text>
+        <Pressable onPress={() => {}}>
+          <Text style={{fontSize: 16, color: '#13A89E', fontWeight: '600'}}>
+            Sign In
+          </Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -115,5 +127,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'black',
     marginHorizontal: 20,
+  },
+  text1: {
+    fontSize: 16,
+    color: 'white',
   },
 });
