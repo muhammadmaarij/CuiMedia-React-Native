@@ -21,14 +21,13 @@ const height = Dimensions.get('window').height;
 export default function SplashScreen() {
   return (
     <View style={styles.parent}>
-      <StatusBar backgroundColor="green" />
+      <StatusBar backgroundColor="#D1D2D9" />
       <Image
         style={{
           marginTop: height * 0.1,
           height: height * 0.3,
           width: height * 0.3,
           borderRadius: 17.5,
-          marginRight: 12,
           alignSelf: 'center',
         }}
         source={require('../assets/cuilogo.png')}
