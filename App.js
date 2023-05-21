@@ -4,5 +4,6 @@ import StackNavigator from './src/navigation/StackNavigator';
 import TabNavigation from './src/navigation/TabNavigation';
 
 export default function App() {
-  return <TabNavigation />;
+  // return <TabNavigation />;
+  return <StackNavigator />;
 }

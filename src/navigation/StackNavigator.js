@@ -1,12 +1,29 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {View, Text} from 'react-native';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import SplashScreen from '../screens/SplashScreen';
+import HomeScreen from '../screens/HomeScreen';
+import GroupScreen from '../screens/GroupScreen';
+import PostScreen from '../screens/PostScreen';
+import NotificationScreen from '../screens/NotificationScreen';
+import MenuScreen from '../screens/MenuScreen';
+
+const Stack = createNativeStackNavigator();
 
 export default function StackNavigator() {
   return (
-    <View>
-      <Text>StackNavigator</Text>
-    </View>
-  )
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Splash"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Splash" component={SplashScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Groups" component={GroupScreen} />
+        <Stack.Screen name="Post" component={PostScreen} />
+        <Stack.Screen name="Notification" component={NotificationScreen} />
+        <Stack.Screen name="Menu" component={MenuScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-
-const styles = StyleSheet.create({})

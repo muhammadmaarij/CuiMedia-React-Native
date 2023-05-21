@@ -2,13 +2,13 @@ import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import React from 'react';
 import HomeScreen from '../screens/HomeScreen';
 import {NavigationContainer} from '@react-navigation/native';
-import SettingsScreen from '../screens/SettingsScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import GroupScreen from '../screens/GroupScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import PostScreen from '../screens/PostScreen';
+import MenuScreen from '../screens/MenuScreen';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -61,8 +61,8 @@ export default function TabNavigation() {
           }}
         />
         <Tab.Screen
-          name="Settings"
-          component={SettingsScreen}
+          name="Menu"
+          component={MenuScreen}
           options={{
             tabBarIcon: () => <Icon name="bars" size={24} color="#0C134F" />,
             tabBarShowLabel: false,
