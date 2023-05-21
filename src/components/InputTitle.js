@@ -14,7 +14,8 @@ export default function InputTitle({text}) {
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: width * 0.1,
+    marginLeft: width * 0.05,
+    marginBottom: 2,
   },
   text: {
     fontSize: 14,
