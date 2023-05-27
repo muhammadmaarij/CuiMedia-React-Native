@@ -10,9 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@firebase/auth": "^0.23.2",
     "@react-navigation/material-bottom-tabs": "^6.2.15",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
+    "firebase": "^9.22.1",
     "react": "18.2.0",
     "react-native": "0.71.8",
     "react-native-paper": "^5.8.0",

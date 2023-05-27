@@ -6,6 +6,7 @@ import {
   ImageBackground,
   ScrollView,
   Pressable,
+  Alert,
 } from 'react-native';
 
 import React, {useState} from 'react';
@@ -13,13 +14,34 @@ import PostCard from '../components/PostCard';
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import InputTitle from '../components/InputTitle';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import {auth} from '../config/firebase';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-export default function SignInScreen() {
+export default function SignInScreen({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const Login = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        // Signed in
+        const user = userCredential.user;
+        navigation.navigate('Home');
+        // ...
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        Alert.alert(errorMessage);
+      });
+  };
 
   return (
     <View style={styles.parent}>
@@ -65,13 +87,13 @@ export default function SignInScreen() {
           </Text>
         </View>
       </View>
-      <CustomButton title={'SignIn'} onPress={() => {}} />
+      <CustomButton title={'SignIn'} onPress={() => Login()} />
       <View
         style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
         <Text style={{fontSize: 16, color: 'white'}}>
           Don't have an account?{' '}
         </Text>
-        <Pressable onPress={() => {}}>
+        <Pressable onPress={() => navigation.navigate('SignUp')}>
           <Text style={{fontSize: 16, color: '#13A89E', fontWeight: '600'}}>
             Sign Up
           </Text>

@@ -13,16 +13,37 @@ import PostCard from '../components/PostCard';
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import InputTitle from '../components/InputTitle';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import {auth} from '../config/firebase';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-export default function SignUpScreen() {
+export default function SignUpScreen({navigation}) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [designation, setDesignation] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const SignUp = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        // Signed in
+        const user = userCredential.user;
+        navigation.navigate('SignIn');
+        // ...
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        Alert.alert(errorMessage);
+      });
+  };
 
   return (
     <View style={styles.parent}>
@@ -77,7 +98,7 @@ export default function SignUpScreen() {
           secureText={false}
         />
       </View>
-      <CustomButton title={'SignUp'} onPress={() => {}} />
+      <CustomButton title={'SignUp'} onPress={() => SignUp()} />
       <View
         style={{flexDirection: 'row', justifyContent: 'center', marginTop: 5}}>
         <Text style={{fontSize: 16, color: 'white'}}>

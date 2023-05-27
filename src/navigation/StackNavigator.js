@@ -10,6 +10,7 @@ import NotificationScreen from '../screens/NotificationScreen';
 import MenuScreen from '../screens/MenuScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import SignInScreen from '../screens/SignInScreen';
+import {auth} from '../config/firebase';
 
 const Stack = createNativeStackNavigator();
 
