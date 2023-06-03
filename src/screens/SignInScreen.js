@@ -28,9 +28,11 @@ export default function SignInScreen({navigation}) {
   const [password, setPassword] = useState('');
 
   const Login = () => {
+    console.log('radsad');
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         // Signed in
+        console.log('erer');
         const user = userCredential.user;
         navigation.navigate('Home');
         // ...
@@ -39,6 +41,7 @@ export default function SignInScreen({navigation}) {
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
+        console.log(errorMessage);
         Alert.alert(errorMessage);
       });
   };
@@ -127,11 +130,11 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 26,
-    fontWeight: 'bold',
     color: 'black',
     marginLeft: 20,
     marginTop: 30,
     margin: 5,
+    fontFamily: 'Poppins-Bold',
   },
   subheading: {
     fontSize: 16,

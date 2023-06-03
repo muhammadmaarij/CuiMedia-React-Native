@@ -6,6 +6,7 @@ import {
   ImageBackground,
   ScrollView,
   Pressable,
+  Alert,
 } from 'react-native';
 
 import React, {useState} from 'react';
@@ -17,7 +18,15 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import {auth} from '../config/firebase';
+import {
+  auth,
+  app,
+  db,
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+} from '../config/firebase';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -34,6 +43,7 @@ export default function SignUpScreen({navigation}) {
       .then(userCredential => {
         // Signed in
         const user = userCredential.user;
+        handleSignUp();
         navigation.navigate('SignIn');
         // ...
       })
@@ -43,6 +53,19 @@ export default function SignUpScreen({navigation}) {
         // ..
         Alert.alert(errorMessage);
       });
+  };
+
+  const handleSignUp = async () => {
+    try {
+      const docRef = await addDoc(collection(db, 'users'), {
+        name: name,
+        email: email,
+        designation: designation,
+      });
+      console.log('Document written with ID: ', docRef.id);
+    } catch (e) {
+      console.error('Error adding document: ', e);
+    }
   };
 
   return (

@@ -11,6 +11,7 @@ import MenuScreen from '../screens/MenuScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import SignInScreen from '../screens/SignInScreen';
 import {auth} from '../config/firebase';
+// import EventScreen from '../screens/EventScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ export default function StackNavigator() {
         <Stack.Screen name="Menu" component={MenuScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="SignIn" component={SignInScreen} />
+        {/* <Stack.Screen name="Event" component={EventScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

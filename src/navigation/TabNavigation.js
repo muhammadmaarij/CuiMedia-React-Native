@@ -3,7 +3,6 @@ import React from 'react';
 import HomeScreen from '../screens/HomeScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import GroupScreen from '../screens/GroupScreen';
 import NotificationScreen from '../screens/NotificationScreen';
