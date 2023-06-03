@@ -18,7 +18,7 @@ import InputTitle from '../components/InputTitle';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-export default function SplashScreen() {
+export default function SplashScreen({navigation}) {
   return (
     <View style={styles.parent}>
       <StatusBar backgroundColor="#D1D2D9" />
@@ -50,7 +50,12 @@ export default function SplashScreen() {
           style={styles.backgroundImage}
         />
         <View style={{marginTop: height * 0.11}}>
-          <CustomButton title={'Admin'} onPress={() => {}} />
+          <CustomButton
+            title={'Admin'}
+            onPress={() => {
+              navigation.navigate('SignIn');
+            }}
+          />
           <View style={{height: height * 0.07}}></View>
           <CustomButton title={'Student'} onPress={() => {}} />
         </View>

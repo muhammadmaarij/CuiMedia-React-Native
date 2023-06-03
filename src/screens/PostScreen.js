@@ -122,7 +122,7 @@ export default function PostScreen() {
         style={{
           alignItems: 'center',
           justifyContent: 'flex-end',
-          height: height * 0.7,
+          height: height * 0.6,
         }}>
         <ImageBackground
           source={require('../assets/bluebg.png')}

@@ -10,6 +10,5 @@ import New from './src/screens/New';
 
 export default function App() {
   // return <TabNavigation />;
-  // return <StackNavigator />;
-  return <New />;
+  return <StackNavigator />;
 }

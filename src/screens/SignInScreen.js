@@ -19,6 +19,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import {auth} from '../config/firebase';
+import StackNavigator from '../navigation/StackNavigator';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -27,6 +28,11 @@ export default function SignInScreen({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleOnboardingComplete = () => {
+    // Call the function from StackNavigator component
+    StackNavigator.handleOnboardingComplete();
+  };
+
   const Login = () => {
     console.log('radsad');
     signInWithEmailAndPassword(auth, email, password)
@@ -34,13 +40,12 @@ export default function SignInScreen({navigation}) {
         // Signed in
         console.log('erer');
         const user = userCredential.user;
-        navigation.navigate('Home');
-        // ...
+        navigation.navigate('root');
+        handleOnboardingComplete();
       })
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
         console.log(errorMessage);
         Alert.alert(errorMessage);
       });

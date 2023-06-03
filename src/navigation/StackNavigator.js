@@ -10,26 +10,49 @@ import NotificationScreen from '../screens/NotificationScreen';
 import MenuScreen from '../screens/MenuScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import SignInScreen from '../screens/SignInScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {auth} from '../config/firebase';
+import {useState, useEffect} from 'react';
+import TabNavigation from './TabNavigation';
+
 // import EventScreen from '../screens/EventScreen';
 
 const Stack = createNativeStackNavigator();
 
 export default function StackNavigator() {
+  const [completedOnboarding, setCompletedOnboarding] = useState(false);
+
+  useEffect(() => {
+    // Read from AsyncStorage to determine if onboarding is completed
+    console.log(completedOnboarding);
+    AsyncStorage.getItem('completedOnboarding').then(value => {
+      if (value === 'true') {
+        setCompletedOnboarding(true);
+      }
+    });
+  }, []);
+
+  handleOnboardingComplete = () => {
+    // Update local state and store in AsyncStorage
+    setCompletedOnboarding(true);
+    AsyncStorage.setItem('completedOnboarding', 'true');
+  };
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="SignIn"
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Splash" component={SplashScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Groups" component={GroupScreen} />
-        <Stack.Screen name="Post" component={PostScreen} />
-        <Stack.Screen name="Notification" component={NotificationScreen} />
-        <Stack.Screen name="Menu" component={MenuScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="SignIn" component={SignInScreen} />
-        {/* <Stack.Screen name="Event" component={EventScreen} /> */}
+    <NavigationContainer independent={true}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        {!completedOnboarding ? (
+          <>
+            <Stack.Screen name="Splash" component={SplashScreen} />
+            <Stack.Screen name="SignUp" component={SignUpScreen} />
+            <Stack.Screen name="SignIn" component={SignInScreen} />
+            <Stack.Screen name="root" component={TabNavigation} />
+          </>
+        ) : (
+          <>
+            <Stack.Screen name="root" component={TabNavigation} />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
