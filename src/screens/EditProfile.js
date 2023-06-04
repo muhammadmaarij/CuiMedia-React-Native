@@ -78,18 +78,14 @@ export default function EditProfile({navigation}) {
     //   }
 
     try {
-      // Create a query to filter documents based on the email field
       const q = query(collection(db, 'users'), where('email', '==', email));
 
-      // Execute the query
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
         console.log('No matching documents found.');
         return;
       }
-
-      // There should be only one document matching the email
       userDoc = querySnapshot.docs[0];
 
       // Access the document data

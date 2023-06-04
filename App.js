@@ -9,9 +9,11 @@ import SignUpScreen from './src/screens/SignUpScreen';
 import New from './src/screens/New';
 import CreateEvent from './src/screens/CreateEvent';
 import EditProfile from './src/screens/EditProfile';
+import CustomButton2 from './src/components/CustomButton2';
+import MenuScreen from './src/screens/MenuScreen';
 
 export default function App() {
   // return <TabNavigation />;
   return <StackNavigator />;
-  // return <EditProfile />;
+  // return <EventScreen />;
 }

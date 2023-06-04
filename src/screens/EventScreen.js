@@ -139,10 +139,35 @@ const Item = ({
     </View>
   </View>
 );
-export default function EventScreen() {
+export default function EventScreen({navigation}) {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.parent}>
+      <Pressable
+        onPress={() => {
+          navigation.navigate('createevent');
+        }}
+        style={{
+          height: height * 0.04,
+          width: height * 0.12,
+          backgroundColor: '#13A89E',
+          borderRadius: 15,
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'absolute',
+          marginTop: height * 0.1,
+          marginLeft: width * 0.6,
+        }}>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 12,
+            fontFamily: 'Poppins-Bold',
+            alignSelf: 'center',
+          }}>
+          Add Event
+        </Text>
+      </Pressable>
       <ImageBackground
         source={require('../assets/bluebg.png')}
         style={styles.backgroundImage}

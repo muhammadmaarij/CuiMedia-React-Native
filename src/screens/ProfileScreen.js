@@ -19,7 +19,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-export default function ProfileScreen() {
+export default function ProfileScreen({navigation}) {
   return (
     <View style={styles.parent}>
       <View>
@@ -54,7 +54,7 @@ export default function ProfileScreen() {
             <Text style={styles.heading2}>Muhammad Maarij</Text>
             <Text style={[styles.heading3]}>FA20-BCS-060</Text>
           </View>
-          <Pressable>
+          <Pressable onPress={() => navigation.navigate('editprofile')}>
             <Icon name="gear" size={24} color="#0C134F" />
           </Pressable>
         </View>
