@@ -15,6 +15,7 @@ import {auth} from '../config/firebase';
 import {useState, useEffect} from 'react';
 import TabNavigation from './TabNavigation';
 import ProfileScreen from '../screens/ProfileScreen';
+import EditProfile from '../screens/EditProfile';
 
 // import EventScreen from '../screens/EventScreen';
 
@@ -40,7 +41,7 @@ export default function StackNavigator() {
   };
 
   return (
-    <NavigationContainer >
+    <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         {!completedOnboarding ? (
           <>
@@ -49,11 +50,13 @@ export default function StackNavigator() {
             <Stack.Screen name="SignIn" component={SignInScreen} />
             <Stack.Screen name="root" component={TabNavigation} />
             <Stack.Screen name="profile" component={ProfileScreen} />
+            <Stack.Screen name="editprofile" component={EditProfile} />
           </>
         ) : (
           <>
             <Stack.Screen name="root" component={TabNavigation} />
             <Stack.Screen name="profile" component={ProfileScreen} />
+            <Stack.Screen name="editprofile" component={EditProfile} />
           </>
         )}
       </Stack.Navigator>

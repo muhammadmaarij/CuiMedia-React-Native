@@ -9,8 +9,7 @@ import {
   Pressable,
   Alert,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PostCard from '../components/PostCard';
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
@@ -27,6 +26,11 @@ import {
   collection,
   addDoc,
   doc,
+  firestore,
+  query,
+  where,
+  getDocs,
+  updateDoc,
 } from '../config/firebase';
 
 const width = Dimensions.get('window').width;
@@ -37,37 +41,106 @@ export default function EditProfile({navigation}) {
   const [email, setEmail] = useState('');
   const [designation, setDesignation] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [newPassword, setnewPassword] = useState('');
+  const [user, setUser] = useState(null);
+  const [userDocument, setUserDocument] = useState(null);
 
-  const SignUp = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
-        // Signed in
-        const user = userCredential.user;
-        handleSignUp();
-        navigation.navigate('SignIn');
-        // ...
-      })
-      .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-        Alert.alert(errorMessage);
-      });
+  useEffect(() => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      console.log(currentUser);
+      setUser(currentUser);
+      setEmail(currentUser.email);
+      console.log('waittt');
+      fetchUserDocument(currentUser.email);
+      // setName(user.name);
+    } else {
+      console.log('hereree');
+    }
+  }, []);
+
+  const fetchUserDocument = async email => {
+    // try {
+    //   // Query the Firestore collection for the user document with matching email
+    //   const querySnapshot = await firestore
+    //     .collection('users')
+    //     .where('email', '==', email)
+    //     .limit(1)
+    //     .get();
+
+    //   // Retrieve the user document if it exists
+    //   if (!querySnapshot.empty) {
+    //     const userDoc = querySnapshot.docs[0];
+    //     setUserDocument(userDoc.data());
+    //   } else {
+    //     // User document not found
+    //     console.log('User document not found for email:', email);
+    //   }
+
+    try {
+      // Create a query to filter documents based on the email field
+      const q = query(collection(db, 'users'), where('email', '==', email));
+
+      // Execute the query
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        console.log('No matching documents found.');
+        return;
+      }
+
+      // There should be only one document matching the email
+      userDoc = querySnapshot.docs[0];
+
+      // Access the document data
+      setUserDocument(userDoc.data());
+      setName(userDoc.data().name);
+      setDesignation(userDoc.data().designation);
+      console.log('User document data:', userDocument);
+    } catch (error) {
+      console.log('Error fetching user document:', error);
+    }
   };
 
-  const handleSignUp = async () => {
+  const handleUpdate = async () => {
     try {
-      const docRef = await addDoc(collection(db, 'users'), {
+      const usersRef = collection(db, 'users');
+      const q = query(usersRef, where('email', '==', email));
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        console.log('No matching documents found.');
+        return;
+      }
+
+      const document = querySnapshot.docs[0];
+      const documentId = document.id;
+
+      const userDocRef = doc(db, 'users', documentId);
+      await updateDoc(userDocRef, {
         name: name,
         email: email,
         designation: designation,
       });
-      console.log('Document written with ID: ', docRef.id);
+
+      console.log('Document updated successfully');
     } catch (e) {
-      console.error('Error adding document: ', e);
+      console.error('Error updating document:', e);
     }
   };
+
+  // const handleUpdate = async () => {
+  //   try {
+  //     const docRef = await addDoc(collection(db, 'users'), {
+  //       name: name,
+  //       email: email,
+  //       designation: designation,
+  //     });
+  //     console.log('Document written with ID: ', docRef.id);
+  //   } catch (e) {
+  //     console.error('Error adding document: ', e);
+  //   }
+  // };
 
   return (
     <View style={styles.parent}>
@@ -185,13 +258,13 @@ export default function EditProfile({navigation}) {
         <InputTitle text={'New Password'} />
         <CustomTextInput
           placeholder="New Password"
-          text={confirmPassword}
-          onChangeText={setConfirmPassword}
+          text={newPassword}
+          onChangeText={setnewPassword}
           secureText={false}
         />
       </View>
       <View>
-        <CustomButton title={'Update'} onPress={() => SignUp()} />
+        <CustomButton title={'Update'} onPress={handleUpdate} />
       </View>
     </View>
   );

@@ -12,6 +12,6 @@ import EditProfile from './src/screens/EditProfile';
 
 export default function App() {
   // return <TabNavigation />;
-  // return <StackNavigator />;
-  return <EditProfile />;
+  return <StackNavigator />;
+  // return <EditProfile />;
 }

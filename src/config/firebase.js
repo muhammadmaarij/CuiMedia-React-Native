@@ -13,6 +13,7 @@ import {
   where,
   orderBy,
   limit,
+  updateDoc,
 } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -49,4 +50,5 @@ export {
   getDownloadURL,
   orderBy,
   limit,
+  updateDoc,
 };
