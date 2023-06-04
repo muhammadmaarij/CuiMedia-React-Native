@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {auth} from '../config/firebase';
 import {useState, useEffect} from 'react';
 import TabNavigation from './TabNavigation';
+import ProfileScreen from '../screens/ProfileScreen';
 
 // import EventScreen from '../screens/EventScreen';
 
@@ -39,7 +40,7 @@ export default function StackNavigator() {
   };
 
   return (
-    <NavigationContainer independent={true}>
+    <NavigationContainer >
       <Stack.Navigator screenOptions={{headerShown: false}}>
         {!completedOnboarding ? (
           <>
@@ -47,10 +48,12 @@ export default function StackNavigator() {
             <Stack.Screen name="SignUp" component={SignUpScreen} />
             <Stack.Screen name="SignIn" component={SignInScreen} />
             <Stack.Screen name="root" component={TabNavigation} />
+            <Stack.Screen name="profile" component={ProfileScreen} />
           </>
         ) : (
           <>
             <Stack.Screen name="root" component={TabNavigation} />
+            <Stack.Screen name="profile" component={ProfileScreen} />
           </>
         )}
       </Stack.Navigator>

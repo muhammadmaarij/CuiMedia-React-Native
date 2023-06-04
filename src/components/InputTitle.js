@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   text: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#000000',
+    fontFamily: 'Poppins-Medium',
   },
 });

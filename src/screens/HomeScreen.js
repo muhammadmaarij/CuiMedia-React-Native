@@ -5,6 +5,7 @@ import {
   Dimensions,
   ImageBackground,
   ScrollView,
+  Image,
 } from 'react-native';
 
 import React from 'react';
@@ -12,6 +13,7 @@ import PostCard from '../components/PostCard';
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import InputTitle from '../components/InputTitle';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -21,9 +23,42 @@ export default function HomeScreen() {
     <View style={styles.parent}>
       <View
         style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginHorizontal: 20,
+        }}>
+        <Text style={styles.heading}>CUI Timeline</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            width: width * 0.3,
+          }}>
+          <Image
+            source={require('../assets/clock.png')}
+            style={{
+              height: height * 0.05,
+              resizeMode: 'cover',
+              width: height * 0.05,
+            }}
+          />
+          <Image
+            source={require('../assets/Chat.png')}
+            style={{
+              height: height * 0.05,
+              resizeMode: 'cover',
+              width: height * 0.05,
+            }}
+          />
+        </View>
+      </View>
+      <View
+        style={{
           alignItems: 'center',
           justifyContent: 'flex-end',
-          height: height * 0.85,
+          height: height * 0.95,
         }}>
         <ImageBackground
           source={require('../assets/bluebg.png')}
@@ -44,9 +79,6 @@ export default function HomeScreen() {
           />
         </ScrollView>
       </View>
-      {/* <CustomButton title={'Done'} />
-      <InputTitle text={'Email'} />
-      <CustomTextInput /> */}
     </View>
   );
 }
@@ -57,11 +89,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#D1D2D9',
   },
   backgroundImage: {
-    flex: 1,
-    height: height * 0.75,
+    flex: 0.75,
+    height: height * 0.85,
     resizeMode: 'cover',
     width: width,
     alignSelf: 'flex-end',
-    marginTop: height * 0.25,
+    marginTop: height * 0.05,
+  },
+  heading: {
+    fontSize: 32,
+    color: '#0C134F',
+    marginTop: 10,
+    fontFamily: 'Poppins-Medium',
   },
 });

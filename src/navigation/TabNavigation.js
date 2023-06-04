@@ -16,59 +16,57 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function TabNavigation() {
   return (
-    <NavigationContainer independent={true}>
-      <Tab.Navigator
-        initialRouteName="Home"
-        activeColor="#0C134F"
-        inactiveColor="#8e8e93"
-        barStyle={{
-          backgroundColor: '#D1D2D9',
-          height: height * 0.125,
-          width: width,
+    <Tab.Navigator
+      initialRouteName="Home"
+      activeColor="#0C134F"
+      inactiveColor="#8e8e93"
+      barStyle={{
+        backgroundColor: '#D1D2D9',
+        height: height * 0.125,
+        width: width,
+      }}
+      screenOptions={{headerShown: false}}>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: () => <Icon name="home" size={24} color="#0C134F" />,
+          tabBarShowLabel: false,
         }}
-        screenOptions={{headerShown: false}}>
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            tabBarIcon: () => <Icon name="home" size={24} color="#0C134F" />,
-            tabBarShowLabel: false,
-          }}
-        />
-        <Tab.Screen
-          name="Groups"
-          component={GroupScreen}
-          options={{
-            tabBarIcon: () => <Icon name="group" size={24} color="#0C134F" />,
-            tabBarShowLabel: false,
-          }}
-        />
-        <Tab.Screen
-          name="Post"
-          component={PostScreen}
-          options={{
-            tabBarIcon: () => <Icon name="plus" size={24} color="#0C134F" />,
-            tabBarShowLabel: false,
-          }}
-        />
-        <Tab.Screen
-          name="Notification"
-          component={NotificationScreen}
-          options={{
-            tabBarIcon: () => <Icon name="bell" size={24} color="#0C134F" />,
-            tabBarShowLabel: false,
-          }}
-        />
-        <Tab.Screen
-          name="Menu"
-          component={MenuScreen}
-          options={{
-            tabBarIcon: () => <Icon name="bars" size={24} color="#0C134F" />,
-            tabBarShowLabel: false,
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+      />
+      <Tab.Screen
+        name="Groups"
+        component={GroupScreen}
+        options={{
+          tabBarIcon: () => <Icon name="group" size={24} color="#0C134F" />,
+          tabBarShowLabel: false,
+        }}
+      />
+      <Tab.Screen
+        name="Post"
+        component={PostScreen}
+        options={{
+          tabBarIcon: () => <Icon name="plus" size={24} color="#0C134F" />,
+          tabBarShowLabel: false,
+        }}
+      />
+      <Tab.Screen
+        name="Notification"
+        component={NotificationScreen}
+        options={{
+          tabBarIcon: () => <Icon name="bell" size={24} color="#0C134F" />,
+          tabBarShowLabel: false,
+        }}
+      />
+      <Tab.Screen
+        name="Menu"
+        component={MenuScreen}
+        options={{
+          tabBarIcon: () => <Icon name="bars" size={24} color="#0C134F" />,
+          tabBarShowLabel: false,
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 

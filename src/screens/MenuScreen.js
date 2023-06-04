@@ -1,10 +1,10 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-export default function MenuScreen() {
+export default function MenuScreen({navigation}) {
   return (
     <View>
-      <Text>MenuScreen</Text>
+      <Text onPress={() => navigation.navigate('profile')}>MenuScreen</Text>
     </View>
   );
 }
