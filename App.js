@@ -11,9 +11,10 @@ import CreateEvent from './src/screens/CreateEvent';
 import EditProfile from './src/screens/EditProfile';
 import CustomButton2 from './src/components/CustomButton2';
 import MenuScreen from './src/screens/MenuScreen';
+import FaqsScreen from './src/screens/FaqsScreen';
 
 export default function App() {
   // return <TabNavigation />;
   return <StackNavigator />;
-  // return <EventScreen />;
+  // return <FaqsScreen />;
 }

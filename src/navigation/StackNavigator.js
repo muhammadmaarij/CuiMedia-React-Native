@@ -18,6 +18,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import EditProfile from '../screens/EditProfile';
 import EventScreen from '../screens/EventScreen';
 import CreateEvent from '../screens/CreateEvent';
+import FaqsScreen from '../screens/FaqsScreen';
 
 // import EventScreen from '../screens/EventScreen';
 
@@ -55,6 +56,7 @@ export default function StackNavigator() {
             <Stack.Screen name="editprofile" component={EditProfile} />
             <Stack.Screen name="event" component={EventScreen} />
             <Stack.Screen name="createevent" component={CreateEvent} />
+            <Stack.Screen name="faqs" component={FaqsScreen} />
           </>
         ) : (
           <>
@@ -62,7 +64,7 @@ export default function StackNavigator() {
             <Stack.Screen name="profile" component={ProfileScreen} />
             <Stack.Screen name="editprofile" component={EditProfile} />
             <Stack.Screen name="event" component={EventScreen} />
-            <Stack.Screen name="createevent" component={CreateEvent} />
+            <Stack.Screen name="faqs" component={FaqsScreen} />
           </>
         )}
       </Stack.Navigator>

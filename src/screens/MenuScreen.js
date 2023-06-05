@@ -151,7 +151,13 @@ export default function MenuScreen({navigation}) {
           alignItems: 'flex-end',
           justifyContent: 'space-between',
         }}>
-        <CustomButton2 title={'Fundraising'} onPress={() => {}} icon={'plus'} />
+        <CustomButton2
+          title={'FAQs'}
+          onPress={() => {
+            navigation.navigate('faqs');
+          }}
+          icon={'plus'}
+        />
         <CustomButton2
           title={'Blood Donation'}
           onPress={() => {}}
@@ -159,7 +165,10 @@ export default function MenuScreen({navigation}) {
         />
       </View>
       <View>
-        <CustomButton title={'Logout'} onPress={() => {}} />
+        <CustomButton
+          title={'Logout'}
+          onPress={() => navigation.navigate('Splash')}
+        />
       </View>
     </View>
   );

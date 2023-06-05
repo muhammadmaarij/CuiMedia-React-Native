@@ -45,6 +45,7 @@ export default function SignUpScreen({navigation}) {
         const user = userCredential.user;
         handleSignUp();
         navigation.navigate('SignIn');
+        Alert.alert('Successful');
         // ...
       })
       .catch(error => {
@@ -127,7 +128,10 @@ export default function SignUpScreen({navigation}) {
         <Text style={{fontSize: 16, color: 'white'}}>
           Already have an account?{' '}
         </Text>
-        <Pressable onPress={() => {}}>
+        <Pressable
+          onPress={() => {
+            navigation.navigate('SignIn');
+          }}>
           <Text style={{fontSize: 16, color: '#13A89E', fontWeight: '600'}}>
             Sign In
           </Text>
